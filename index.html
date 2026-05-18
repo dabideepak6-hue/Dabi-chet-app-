@@ -178,7 +178,7 @@ height:250px;
 
 </div>
 
-<!-- SEARCH LOCATION -->
+<!-- SEARCH -->
 
 <div class="card">
 
@@ -222,8 +222,8 @@ Current Location
 </p>
 
 <p>
-<strong>Accuracy:</strong>
-<span id="accuracy">--</span>
+<strong>Status:</strong>
+<span id="accuracy">Waiting...</span>
 </p>
 
 <p>
@@ -249,7 +249,7 @@ Open Location
 <button class="trackBtn"
 onclick="getLocation()">
 
-Allow Location Access
+My Live Location
 
 </button>
 
@@ -269,11 +269,11 @@ Waiting For Permission...
 
 </div>
 
-<!-- LIVE MAP -->
+<!-- MAP -->
 
 <div id="map"></div>
 
-<!-- MAP PREVIEW -->
+<!-- MAP IMAGE -->
 
 <img
 id="mapImage"
@@ -283,7 +283,7 @@ src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/12
 
 alt="Map Preview">
 
-<!-- 360 VIEW -->
+<!-- STREET VIEW -->
 
 <div class="card">
 
@@ -328,10 +328,59 @@ let marker;
 let currentLat = "";
 let currentLon = "";
 
-let lastLat = null;
-let lastLon = null;
+let watchId = null;
+
+let searchMode = false;
+
+function updateMap(lat,lon,title){
+
+document.getElementById("lat")
+.innerHTML = lat;
+
+document.getElementById("lon")
+.innerHTML = lon;
+
+document.getElementById("accuracy")
+.innerHTML = "Updated";
+
+const googleURL =
+
+`https://www.google.com/maps?q=${lat},${lon}`;
+
+document.getElementById("mapLink")
+.href = googleURL;
+
+map.setView([lat,lon],16);
+
+if(marker){
+
+marker.setLatLng([lat,lon]);
+
+}else{
+
+marker = L.marker([lat,lon])
+.addTo(map);
+
+}
+
+marker.bindPopup(title)
+.openPopup();
+
+document.getElementById("mapImage")
+.src =
+
+`https://maps.locationiq.com/v3/staticmap?key=pk.demo&center=${lat},${lon}&zoom=16&size=600x300&markers=icon:large-red-cutout|${lat},${lon}`;
+
+document.getElementById("streetView")
+.src =
+
+`https://www.google.com/maps?q=&layer=c&cbll=${lat},${lon}&cbp=11,0,0,0,0&output=svembed`;
+
+}
 
 function getLocation(){
+
+searchMode = false;
 
 const status =
 document.getElementById("status");
@@ -341,6 +390,13 @@ if(navigator.geolocation){
 status.innerHTML =
 "Requesting Permission...";
 
+if(watchId !== null){
+
+navigator.geolocation.clearWatch(watchId);
+
+}
+
+watchId =
 navigator.geolocation.watchPosition(
 
 showPosition,
@@ -366,80 +422,27 @@ status.innerHTML =
 
 function showPosition(position){
 
+if(searchMode){
+
+return;
+
+}
+
 currentLat =
 position.coords.latitude;
 
 currentLon =
 position.coords.longitude;
 
-const accuracy =
-position.coords.accuracy;
-
-document.getElementById("lat")
-.innerHTML = currentLat;
-
-document.getElementById("lon")
-.innerHTML = currentLon;
-
-document.getElementById("accuracy")
-.innerHTML =
-accuracy + " meters";
+updateMap(
+currentLat,
+currentLon,
+"📍 You Are Here"
+);
 
 document.getElementById("status")
 .innerHTML =
-"Live Tracking Active ✅";
-
-const googleURL =
-
-`https://www.google.com/maps?q=${currentLat},${currentLon}`;
-
-document.getElementById("mapLink")
-.href = googleURL;
-
-map.setView(
-[currentLat,currentLon],
-16
-);
-
-if(marker){
-
-marker.setLatLng(
-[currentLat,currentLon]
-);
-
-}else{
-
-marker = L.marker(
-[currentLat,currentLon]
-)
-
-.addTo(map)
-
-.bindPopup("📍 You Are Here")
-
-.openPopup();
-
-}
-
-if(
-lastLat !== currentLat ||
-lastLon !== currentLon
-){
-
-document.getElementById("mapImage")
-.src =
-
-`https://maps.locationiq.com/v3/staticmap?key=pk.demo&center=${currentLat},${currentLon}&zoom=15&size=600x300&markers=icon:large-red-cutout|${currentLat},${currentLon}`;
-
-lastLat = currentLat;
-lastLon = currentLon;
-
-}
-
-document.getElementById("streetView")
-.src =
-
-`https://www.google.com/maps?q=&layer=c&cbll=${currentLat},${currentLon}&cbp=11,0,0,0,0&output=svembed`;
+"✅ Live Tracking Active";
 
 }
 
@@ -538,6 +541,14 @@ return;
 
 }
 
+searchMode = true;
+
+if(watchId !== null){
+
+navigator.geolocation.clearWatch(watchId);
+
+}
+
 document.getElementById("status")
 .innerHTML =
 "Searching Location...";
@@ -570,48 +581,15 @@ parseFloat(data[0].lat);
 const lon =
 parseFloat(data[0].lon);
 
-map.setView([lat,lon],16);
-
-if(marker){
-
-marker.setLatLng([lat,lon]);
-
-}else{
-
-marker = L.marker([lat,lon])
-.addTo(map);
-
-}
-
-marker.bindPopup(data[0].display_name)
-.openPopup();
-
-document.getElementById("lat")
-.innerHTML = lat;
-
-document.getElementById("lon")
-.innerHTML = lon;
-
-document.getElementById("accuracy")
-.innerHTML = "Search Result";
-
-document.getElementById("mapLink")
-.href =
-`https://www.google.com/maps?q=${lat},${lon}`;
-
-document.getElementById("mapImage")
-.src =
-
-`https://maps.locationiq.com/v3/staticmap?key=pk.demo&center=${lat},${lon}&zoom=16&size=600x300&markers=icon:large-red-cutout|${lat},${lon}`;
-
-document.getElementById("streetView")
-.src =
-
-`https://www.google.com/maps?q=&layer=c&cbll=${lat},${lon}&cbp=11,0,0,0,0&output=svembed`;
+updateMap(
+lat,
+lon,
+data[0].display_name
+);
 
 document.getElementById("status")
 .innerHTML =
-"✅ Location Found";
+"✅ Search Location Active";
 
 }catch(error){
 
