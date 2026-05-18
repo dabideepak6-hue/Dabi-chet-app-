@@ -1,76 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DEEPAK DABI LOCATION TRACKER</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <title>DEEPAK DABI LIVE LOCATION TRACKER</title>
+
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
   <style>
+
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family:Arial, sans-serif;
+      font-family:Arial,sans-serif;
     }
 
     body{
       background:#0f172a;
       color:white;
-      text-align:center;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:15px;
     }
 
     .container{
-      width:95%;
-      max-width:1000px;
-      margin:20px auto;
+      width:100%;
+      max-width:500px;
       background:#1e293b;
+      border-radius:20px;
       padding:20px;
-      border-radius:15px;
-      box-shadow:0 0 20px rgba(0,0,0,0.5);
+      box-shadow:0 0 25px rgba(0,0,0,0.5);
     }
 
-    h1{
+    .logo{
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
       color:#38bdf8;
       margin-bottom:20px;
-      font-size:32px;
     }
 
-    button{
-      padding:12px 22px;
-      border:none;
-      border-radius:10px;
-      background:#38bdf8;
-      color:black;
-      font-size:16px;
+    .card{
+      background:#334155;
+      padding:15px;
+      border-radius:15px;
+      margin-bottom:15px;
+    }
+
+    .title{
+      font-size:18px;
+      margin-bottom:10px;
+      color:#38bdf8;
       font-weight:bold;
-      cursor:pointer;
-      margin:10px;
-    }
-
-    button:hover{
-      background:#0ea5e9;
-    }
-
-    #map{
-      height:500px;
-      width:100%;
-      margin-top:20px;
-      border-radius:12px;
     }
 
     .info{
-      margin-top:20px;
-      font-size:18px;
       line-height:2;
+      font-size:15px;
+      word-break:break-word;
+    }
+
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    .trackBtn{
+      background:#38bdf8;
+      color:black;
+    }
+
+    .shareBtn{
+      background:#22c55e;
+      color:white;
     }
 
     .status{
+      text-align:center;
       margin-top:15px;
-      font-size:18px;
+      font-size:15px;
       color:#22c55e;
       font-weight:bold;
+    }
+
+    #map{
+      width:100%;
+      height:300px;
+      border-radius:15px;
+      margin-top:15px;
+      overflow:hidden;
     }
 
     a{
@@ -79,176 +108,274 @@
     }
 
     .footer{
+      text-align:center;
       margin-top:20px;
+      font-size:12px;
       color:#94a3b8;
-      font-size:14px;
     }
+
+    @media(max-width:480px){
+
+      .logo{
+        font-size:22px;
+      }
+
+      .title{
+        font-size:16px;
+      }
+
+      .info{
+        font-size:14px;
+      }
+
+      button{
+        font-size:15px;
+      }
+
+      #map{
+        height:250px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <h1>📍 DEEPAK DABI LOCATION TRACKER</h1>
+  <div class="logo">
+    📍 DEEPAK DABI LIVE TRACKER
+  </div>
 
-    <button onclick="getLocation()">
-      Allow Location Access
-    </button>
+  <div class="card">
 
-    <button onclick="shareLocation()">
-      Share Location
-    </button>
-
-    <div class="status" id="status">
-      Waiting for permission...
+    <div class="title">
+      Current Location
     </div>
 
     <div class="info">
-      <p><strong>Latitude:</strong> <span id="lat">--</span></p>
 
-      <p><strong>Longitude:</strong> <span id="lon">--</span></p>
+      <p>
+        <strong>Latitude:</strong>
+        <span id="lat">--</span>
+      </p>
 
-      <p><strong>Accuracy:</strong> <span id="accuracy">--</span></p>
+      <p>
+        <strong>Longitude:</strong>
+        <span id="lon">--</span>
+      </p>
+
+      <p>
+        <strong>Accuracy:</strong>
+        <span id="accuracy">--</span>
+      </p>
 
       <p>
         <strong>Google Maps:</strong>
-        <a id="mapLink" href="#" target="_blank">
+        <a href="#" id="mapLink" target="_blank">
           Open Location
         </a>
       </p>
-    </div>
 
-    <div id="map"></div>
-
-    <div class="footer">
-      © 2026 Deepak Dabi Location Tracker
     </div>
 
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <button class="trackBtn"
+    onclick="getLocation()">
+    Allow Location Access
+  </button>
 
-  <script>
+  <button class="shareBtn"
+    onclick="shareLocation()">
+    Share Location
+  </button>
 
-    let map = L.map('map').setView([20.5937, 78.9629], 5);
+  <div class="status" id="status">
+    Waiting For Permission...
+  </div>
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+  <div id="map"></div>
 
-    let marker;
-    let currentLat = "";
-    let currentLon = "";
+  <div class="footer">
+    © 2026 Deepak Dabi Location Tracker
+  </div>
 
-    function getLocation(){
+</div>
 
-      const status = document.getElementById("status");
+<script
+src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
 
-      if(navigator.geolocation){
+<script>
 
-        status.innerHTML = "Requesting Location Permission...";
+  let map = L.map('map').setView([20.5937,78.9629],5);
 
-        navigator.geolocation.watchPosition(
-          showPosition,
-          showError,
-          {
-            enableHighAccuracy:true,
-            timeout:10000,
-            maximumAge:0
-          }
-        );
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution:'© OpenStreetMap'
+    }
+  ).addTo(map);
 
-      }else{
-        status.innerHTML = "Geolocation not supported.";
-      }
+  let marker;
+  let currentLat = "";
+  let currentLon = "";
+
+  function getLocation(){
+
+    const status =
+      document.getElementById("status");
+
+    if(navigator.geolocation){
+
+      status.innerHTML =
+        "Requesting Location Permission...";
+
+      navigator.geolocation.watchPosition(
+        showPosition,
+        showError,
+        {
+          enableHighAccuracy:true,
+          timeout:10000,
+          maximumAge:0
+        }
+      );
+
+    }else{
+
+      status.innerHTML =
+        "Geolocation Not Supported";
+
     }
 
-    function showPosition(position){
+  }
 
-      currentLat = position.coords.latitude;
-      currentLon = position.coords.longitude;
+  function showPosition(position){
 
-      const accuracy = position.coords.accuracy;
+    currentLat =
+      position.coords.latitude;
 
-      document.getElementById("lat").innerHTML = currentLat;
-      document.getElementById("lon").innerHTML = currentLon;
-      document.getElementById("accuracy").innerHTML = accuracy + " meters";
+    currentLon =
+      position.coords.longitude;
 
-      document.getElementById("status").innerHTML =
-        "Live Location Tracking Active ✅";
+    const accuracy =
+      position.coords.accuracy;
 
-      const googleURL =
-        `https://www.google.com/maps?q=${currentLat},${currentLon}`;
+    document.getElementById("lat")
+      .innerHTML = currentLat;
 
-      document.getElementById("mapLink").href = googleURL;
+    document.getElementById("lon")
+      .innerHTML = currentLon;
 
-      map.setView([currentLat,currentLon],16);
+    document.getElementById("accuracy")
+      .innerHTML = accuracy + " meters";
 
-      if(marker){
-        marker.setLatLng([currentLat,currentLon]);
-      }else{
-        marker = L.marker([currentLat,currentLon])
-          .addTo(map)
-          .bindPopup("📍 You Are Here")
-          .openPopup();
-      }
+    document.getElementById("status")
+      .innerHTML =
+      "Live Tracking Active ✅";
+
+    const googleURL =
+      `https://www.google.com/maps?q=${currentLat},${currentLon}`;
+
+    document.getElementById("mapLink")
+      .href = googleURL;
+
+    map.setView([currentLat,currentLon],16);
+
+    if(marker){
+
+      marker.setLatLng(
+        [currentLat,currentLon]
+      );
+
+    }else{
+
+      marker = L.marker(
+        [currentLat,currentLon]
+      ).addTo(map)
+      .bindPopup("📍 You Are Here")
+      .openPopup();
+
     }
 
-    function showError(error){
+  }
 
-      const status = document.getElementById("status");
+  function showError(error){
 
-      switch(error.code){
+    const status =
+      document.getElementById("status");
 
-        case error.PERMISSION_DENIED:
-          status.innerHTML =
-            "❌ Location Permission Denied";
-          break;
+    switch(error.code){
 
-        case error.POSITION_UNAVAILABLE:
-          status.innerHTML =
-            "❌ Location Unavailable";
-          break;
+      case error.PERMISSION_DENIED:
+        status.innerHTML =
+          "❌ Permission Denied";
+      break;
 
-        case error.TIMEOUT:
-          status.innerHTML =
-            "⏳ Request Timeout";
-          break;
+      case error.POSITION_UNAVAILABLE:
+        status.innerHTML =
+          "❌ Location Unavailable";
+      break;
 
-        default:
-          status.innerHTML =
-            "❌ Unknown Error";
-      }
+      case error.TIMEOUT:
+        status.innerHTML =
+          "⏳ Request Timeout";
+      break;
+
+      default:
+        status.innerHTML =
+          "❌ Unknown Error";
+
     }
 
-    function shareLocation(){
+  }
 
-      if(currentLat === ""){
-        alert("Please Allow Location First");
-        return;
-      }
+  function shareLocation(){
 
-      const shareURL =
-        `https://www.google.com/maps?q=${currentLat},${currentLon}`;
+    if(currentLat === ""){
 
-      if(navigator.share){
+      alert(
+        "Please Allow Location First"
+      );
 
-        navigator.share({
-          title:"DEEPAK DABI LOCATION",
-          text:"Track My Live Location",
-          url:shareURL
-        });
+      return;
 
-      }else{
-
-        navigator.clipboard.writeText(shareURL);
-
-        alert("Location Link Copied");
-      }
     }
 
-  </script>
+    const shareURL =
+      `https://www.google.com/maps?q=${currentLat},${currentLon}`;
+
+    if(navigator.share){
+
+      navigator.share({
+
+        title:
+          "DEEPAK DABI LIVE LOCATION",
+
+        text:
+          "Track My Live Location",
+
+        url:
+          shareURL
+
+      });
+
+    }else{
+
+      navigator.clipboard
+        .writeText(shareURL);
+
+      alert(
+        "Location Link Copied"
+      );
+
+    }
+
+  }
+
+</script>
 
 </body>
 </html>
