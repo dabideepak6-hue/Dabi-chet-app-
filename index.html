@@ -527,7 +527,8 @@ alert(
 async function searchLocation(){
 
 const query =
-document.getElementById("searchInput").value;
+document.getElementById("searchInput")
+.value.trim();
 
 if(query === ""){
 
@@ -537,9 +538,15 @@ return;
 
 }
 
+document.getElementById("status")
+.innerHTML =
+"Searching Location...";
+
+try{
+
 const response = await fetch(
 
-`https://nominatim.openstreetmap.org/search?format=json&q=${query}`
+`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=in&q=${encodeURIComponent(query)}`
 
 );
 
@@ -549,12 +556,19 @@ if(data.length === 0){
 
 alert("Location Not Found");
 
+document.getElementById("status")
+.innerHTML =
+"❌ Location Not Found";
+
 return;
 
 }
 
-const lat = data[0].lat;
-const lon = data[0].lon;
+const lat =
+parseFloat(data[0].lat);
+
+const lon =
+parseFloat(data[0].lon);
 
 map.setView([lat,lon],16);
 
@@ -569,13 +583,17 @@ marker = L.marker([lat,lon])
 
 }
 
-marker.bindPopup(query).openPopup();
+marker.bindPopup(data[0].display_name)
+.openPopup();
 
 document.getElementById("lat")
 .innerHTML = lat;
 
 document.getElementById("lon")
 .innerHTML = lon;
+
+document.getElementById("accuracy")
+.innerHTML = "Search Result";
 
 document.getElementById("mapLink")
 .href =
@@ -584,12 +602,26 @@ document.getElementById("mapLink")
 document.getElementById("mapImage")
 .src =
 
-`https://maps.locationiq.com/v3/staticmap?key=pk.demo&center=${lat},${lon}&zoom=15&size=600x300&markers=icon:large-red-cutout|${lat},${lon}`;
+`https://maps.locationiq.com/v3/staticmap?key=pk.demo&center=${lat},${lon}&zoom=16&size=600x300&markers=icon:large-red-cutout|${lat},${lon}`;
 
 document.getElementById("streetView")
 .src =
 
 `https://www.google.com/maps?q=&layer=c&cbll=${lat},${lon}&cbp=11,0,0,0,0&output=svembed`;
+
+document.getElementById("status")
+.innerHTML =
+"✅ Location Found";
+
+}catch(error){
+
+document.getElementById("status")
+.innerHTML =
+"❌ Search Error";
+
+alert("Search Failed");
+
+}
 
 }
 
