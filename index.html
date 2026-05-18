@@ -1,140 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-<title>DEEPAK DABI LIVE LOCATION TRACKER</title>
+  <title>
+    DEEPAK DABI LIVE LOCATION TRACKER
+  </title>
 
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
-<style>
+  <style>
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,sans-serif;
+    }
 
-body{
-  background:#0f172a;
-  color:white;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:15px;
-}
+    body{
+      background:#0f172a;
+      color:white;
+      padding:15px;
+      display:flex;
+      justify-content:center;
+    }
 
-.container{
-  width:100%;
-  max-width:500px;
-  background:#1e293b;
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 0 25px rgba(0,0,0,0.5);
-}
+    .container{
+      width:100%;
+      max-width:550px;
+      background:#1e293b;
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 0 25px rgba(0,0,0,0.5);
+    }
 
-.logo{
-  text-align:center;
-  font-size:26px;
-  font-weight:bold;
-  color:#38bdf8;
-  margin-bottom:20px;
-}
+    .logo{
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+      color:#38bdf8;
+      margin-bottom:20px;
+    }
 
-.card{
-  background:#334155;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:15px;
-}
+    .card{
+      background:#334155;
+      border-radius:15px;
+      padding:15px;
+      margin-bottom:15px;
+    }
 
-.title{
-  color:#38bdf8;
-  margin-bottom:10px;
-  font-size:18px;
-  font-weight:bold;
-}
+    .title{
+      color:#38bdf8;
+      font-size:18px;
+      margin-bottom:10px;
+      font-weight:bold;
+    }
 
-.info{
-  line-height:2;
-  font-size:15px;
-  word-break:break-word;
-}
+    .info{
+      line-height:2;
+      font-size:15px;
+      word-break:break-word;
+    }
 
-button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:10px;
-}
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      margin-top:10px;
+    }
 
-.trackBtn{
-  background:#38bdf8;
-  color:black;
-}
+    .trackBtn{
+      background:#38bdf8;
+      color:black;
+    }
 
-.shareBtn{
-  background:#22c55e;
-  color:white;
-}
+    .shareBtn{
+      background:#22c55e;
+      color:white;
+    }
 
-.status{
-  margin-top:15px;
-  text-align:center;
-  color:#22c55e;
-  font-weight:bold;
-}
+    .status{
+      text-align:center;
+      margin-top:15px;
+      color:#22c55e;
+      font-weight:bold;
+      font-size:15px;
+    }
 
-#map{
-  width:100%;
-  height:300px;
-  border-radius:15px;
-  overflow:hidden;
-  margin-top:15px;
-}
+    #map{
+      width:100%;
+      height:300px;
+      border-radius:15px;
+      overflow:hidden;
+      margin-top:15px;
+    }
 
-.mapPreview{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:15px;
-  margin-top:15px;
-  border:2px solid #38bdf8;
-}
+    .mapImage{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:15px;
+      margin-top:15px;
+      border:2px solid #38bdf8;
+    }
 
-a{
-  color:#38bdf8;
-  text-decoration:none;
-}
+    iframe{
+      width:100%;
+      height:300px;
+      border:none;
+      border-radius:15px;
+      margin-top:10px;
+    }
 
-.footer{
-  text-align:center;
-  margin-top:20px;
-  color:#94a3b8;
-  font-size:12px;
-}
+    a{
+      color:#38bdf8;
+      text-decoration:none;
+    }
 
-@media(max-width:480px){
+    .footer{
+      text-align:center;
+      margin-top:20px;
+      font-size:12px;
+      color:#94a3b8;
+    }
 
-  .logo{
-    font-size:22px;
-  }
+    @media(max-width:480px){
 
-  #map{
-    height:250px;
-  }
+      .logo{
+        font-size:22px;
+      }
 
-}
+      #map{
+        height:250px;
+      }
 
-</style>
+      iframe{
+        height:250px;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
@@ -144,6 +159,8 @@ a{
   <div class="logo">
     📍 DEEPAK DABI LIVE TRACKER
   </div>
+
+  <!-- LOCATION INFO -->
 
   <div class="card">
 
@@ -170,8 +187,13 @@ a{
 
       <p>
         <strong>Google Maps:</strong>
-        <a href="#" id="mapLink" target="_blank">
+
+        <a href="#"
+          id="mapLink"
+          target="_blank">
+
           Open Location
+
         </a>
       </p>
 
@@ -179,30 +201,60 @@ a{
 
   </div>
 
+  <!-- BUTTONS -->
+
   <button class="trackBtn"
-  onclick="getLocation()">
+    onclick="getLocation()">
+
     Allow Location Access
+
   </button>
 
   <button class="shareBtn"
-  onclick="shareLocation()">
+    onclick="shareLocation()">
+
     Share Location
+
   </button>
 
+  <!-- STATUS -->
+
   <div class="status"
-  id="status">
+    id="status">
+
     Waiting For Permission...
+
   </div>
 
   <!-- LIVE MAP -->
+
   <div id="map"></div>
 
-  <!-- MAP IMAGE PREVIEW -->
+  <!-- MAP IMAGE -->
+
   <img
-  id="mapImage"
-  class="mapPreview"
-  src="https://maps.geoapify.com/v1/staticmap?style=osm-bright-smooth&width=600&height=300&center=lonlat:78.9629,20.5937&zoom=4&apiKey=YOUR_API_KEY"
-  alt="Map Preview">
+    id="mapImage"
+    class="mapImage"
+
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/1200px-Map_marker.svg.png"
+
+    alt="Map Preview">
+
+  <!-- 360 VIEW -->
+
+  <div class="card">
+
+    <div class="title">
+      360° Street View
+    </div>
+
+    <iframe
+      id="streetView"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+
+  </div>
 
   <div class="footer">
     © 2026 Deepak Dabi Location Tracker
@@ -210,183 +262,208 @@ a{
 
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+<script src=
+"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 </script>
 
 <script>
 
-let map = L.map('map')
-.setView([20.5937,78.9629],5);
+  let map = L.map('map')
+    .setView([20.5937,78.9629],5);
 
-L.tileLayer(
-'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-{
-  attribution:'© OpenStreetMap'
-}).addTo(map);
+  L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution:'© OpenStreetMap'
+    }
+  ).addTo(map);
 
-let marker;
-let currentLat = "";
-let currentLon = "";
+  let marker;
 
-function getLocation(){
+  let currentLat = "";
+  let currentLon = "";
 
-  const status =
-  document.getElementById("status");
+  function getLocation(){
 
-  if(navigator.geolocation){
+    const status =
+      document.getElementById("status");
 
-    status.innerHTML =
-    "Requesting Permission...";
+    if(navigator.geolocation){
 
-    navigator.geolocation.watchPosition(
-      showPosition,
-      showError,
-      {
-        enableHighAccuracy:true,
-        timeout:10000,
-        maximumAge:0
-      }
+      status.innerHTML =
+        "Requesting Permission...";
+
+      navigator.geolocation.watchPosition(
+
+        showPosition,
+
+        showError,
+
+        {
+          enableHighAccuracy:true,
+          timeout:10000,
+          maximumAge:0
+        }
+
+      );
+
+    }else{
+
+      status.innerHTML =
+        "Geolocation Not Supported";
+
+    }
+
+  }
+
+  function showPosition(position){
+
+    currentLat =
+      position.coords.latitude;
+
+    currentLon =
+      position.coords.longitude;
+
+    const accuracy =
+      position.coords.accuracy;
+
+    document.getElementById("lat")
+      .innerHTML = currentLat;
+
+    document.getElementById("lon")
+      .innerHTML = currentLon;
+
+    document.getElementById("accuracy")
+      .innerHTML =
+      accuracy + " meters";
+
+    document.getElementById("status")
+      .innerHTML =
+      "Live Tracking Active ✅";
+
+    const googleURL =
+      `https://www.google.com/maps?q=${currentLat},${currentLon}`;
+
+    document.getElementById("mapLink")
+      .href = googleURL;
+
+    map.setView(
+      [currentLat,currentLon],
+      16
     );
 
-  }else{
+    if(marker){
 
-    status.innerHTML =
-    "Geolocation Not Supported";
+      marker.setLatLng(
+        [currentLat,currentLon]
+      );
 
-  }
+    }else{
 
-}
+      marker = L.marker(
+        [currentLat,currentLon]
+      )
+      .addTo(map)
+      .bindPopup("📍 You Are Here")
+      .openPopup();
 
-function showPosition(position){
+    }
 
-  currentLat =
-  position.coords.latitude;
+    // MAP IMAGE
 
-  currentLon =
-  position.coords.longitude;
+    document.getElementById("mapImage")
+      .src =
+      `https://maps.locationiq.com/v3/staticmap?key=pk.demo&center=${currentLat},${currentLon}&zoom=15&size=600x300&markers=icon:large-red-cutout|${currentLat},${currentLon}`;
 
-  const accuracy =
-  position.coords.accuracy;
+    // 360 STREET VIEW
 
-  document.getElementById("lat")
-  .innerHTML = currentLat;
+    document.getElementById("streetView")
+      .src =
 
-  document.getElementById("lon")
-  .innerHTML = currentLon;
-
-  document.getElementById("accuracy")
-  .innerHTML = accuracy + " meters";
-
-  document.getElementById("status")
-  .innerHTML =
-  "Live Tracking Active ✅";
-
-  const googleURL =
-  `https://www.google.com/maps?q=${currentLat},${currentLon}`;
-
-  document.getElementById("mapLink")
-  .href = googleURL;
-
-  map.setView(
-    [currentLat,currentLon],16
-  );
-
-  if(marker){
-
-    marker.setLatLng(
-      [currentLat,currentLon]
-    );
-
-  }else{
-
-    marker = L.marker(
-      [currentLat,currentLon]
-    )
-    .addTo(map)
-    .bindPopup("📍 You Are Here")
-    .openPopup();
+      `https://www.google.com/maps?q=&layer=c&cbll=${currentLat},${currentLon}&cbp=11,0,0,0,0&output=svembed`;
 
   }
 
-  // MAP IMAGE PREVIEW
-  document.getElementById("mapImage")
-  .src =
-  `https://maps.geoapify.com/v1/staticmap?style=osm-bright-smooth&width=600&height=300&center=lonlat:${currentLon},${currentLat}&zoom=15&marker=lonlat:${currentLon},${currentLat};color:%23ff0000;size:medium&apiKey=YOUR_API_KEY`;
+  function showError(error){
 
-}
+    const status =
+      document.getElementById("status");
 
-function showError(error){
+    switch(error.code){
 
-  const status =
-  document.getElementById("status");
+      case error.PERMISSION_DENIED:
 
-  switch(error.code){
+        status.innerHTML =
+          "❌ Permission Denied";
 
-    case error.PERMISSION_DENIED:
-      status.innerHTML =
-      "❌ Permission Denied";
-    break;
+      break;
 
-    case error.POSITION_UNAVAILABLE:
-      status.innerHTML =
-      "❌ Location Unavailable";
-    break;
+      case error.POSITION_UNAVAILABLE:
 
-    case error.TIMEOUT:
-      status.innerHTML =
-      "⏳ Request Timeout";
-    break;
+        status.innerHTML =
+          "❌ Location Unavailable";
 
-    default:
-      status.innerHTML =
-      "❌ Unknown Error";
+      break;
 
-  }
+      case error.TIMEOUT:
 
-}
+        status.innerHTML =
+          "⏳ Request Timeout";
 
-function shareLocation(){
+      break;
 
-  if(currentLat === ""){
+      default:
 
-    alert(
-    "Please Allow Location First"
-    );
+        status.innerHTML =
+          "❌ Unknown Error";
 
-    return;
+    }
 
   }
 
-  const shareURL =
-  `https://www.google.com/maps?q=${currentLat},${currentLon}`;
+  function shareLocation(){
 
-  if(navigator.share){
+    if(currentLat === ""){
 
-    navigator.share({
+      alert(
+        "Please Allow Location First"
+      );
 
-      title:
-      "DEEPAK DABI LIVE LOCATION",
+      return;
 
-      text:
-      "Track My Live Location",
+    }
 
-      url:
-      shareURL
+    const shareURL =
 
-    });
+      `https://www.google.com/maps?q=${currentLat},${currentLon}`;
 
-  }else{
+    if(navigator.share){
 
-    navigator.clipboard
-    .writeText(shareURL);
+      navigator.share({
 
-    alert(
-    "Location Link Copied"
-    );
+        title:
+          "DEEPAK DABI LIVE LOCATION",
+
+        text:
+          "Track My Live Location",
+
+        url:
+          shareURL
+
+      });
+
+    }else{
+
+      navigator.clipboard
+        .writeText(shareURL);
+
+      alert(
+        "Location Link Copied"
+      );
+
+    }
 
   }
-
-}
 
 </script>
 
