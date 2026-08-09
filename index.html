@@ -1,631 +1,314 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="hi">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-DEEPAK DABI LIVE LOCATION TRACKER
-</title>
-
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Yogesh Dabi Car Care</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-background:#0f172a;
-color:white;
-padding:15px;
-display:flex;
-justify-content:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#050505,#151515,#292929);
+  color:white;
 }
-
-.container{
-width:100%;
-max-width:550px;
-background:#1e293b;
-border-radius:20px;
-padding:20px;
-box-shadow:0 0 25px rgba(0,0,0,0.5);
+header{
+  padding:25px 15px;
+  text-align:center;
+  background:linear-gradient(135deg,#111,#000);
+  border-bottom:2px solid #25d366;
 }
-
 .logo{
-text-align:center;
-font-size:24px;
-font-weight:bold;
-color:#38bdf8;
-margin-bottom:20px;
-line-height:1.6;
+  font-size:32px;
+  font-weight:bold;
+  color:#25d366;
 }
+.sub{color:#ddd;margin-top:7px}
 
+.hero{
+  padding:45px 20px;
+  text-align:center;
+}
+.hero h1{
+  font-size:38px;
+  margin-bottom:12px;
+}
+.hero h1 span{color:#25d366}
+.hero p{color:#ccc;font-size:17px}
+
+.services{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
 .card{
-background:#334155;
-border-radius:15px;
-padding:15px;
-margin-bottom:15px;
+  background:linear-gradient(145deg,#202020,#101010);
+  padding:25px 18px;
+  border-radius:18px;
+  text-align:center;
+  border:1px solid #333;
+  transition:.3s;
+  cursor:pointer;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#25d366;
+  box-shadow:0 10px 30px #000;
+}
+.icon{font-size:45px;margin-bottom:12px}
+.card h3{margin-bottom:8px}
+.card p{color:#aaa}
+
+.booking{
+  max-width:650px;
+  margin:30px auto;
+  padding:25px;
+  background:#111;
+  border-radius:20px;
+  border:1px solid #333;
+}
+.booking h2{
+  text-align:center;
+  color:#25d366;
+  margin-bottom:20px;
+}
+label{
+  display:block;
+  margin-top:14px;
+  margin-bottom:6px;
+  color:#ddd;
+}
+input,select,textarea{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #444;
+  background:#222;
+  color:white;
+  font-size:16px;
+}
+textarea{height:90px;resize:none}
+
+.whatsapp{
+  width:100%;
+  margin-top:20px;
+  padding:16px;
+  border:none;
+  border-radius:12px;
+  background:#25d366;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.whatsapp:hover{background:#1ebe5d}
+
+.contact{
+  text-align:center;
+  padding:30px 15px;
+  background:#080808;
+  margin-top:30px;
+}
+.contact h2{color:#25d366}
+.contact p{margin:8px;color:#ccc}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#888;
+  background:#000;
 }
 
-.title{
-color:#38bdf8;
-font-size:18px;
-margin-bottom:10px;
-font-weight:bold;
+.float{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#25d366;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  text-decoration:none;
+  color:white;
+  box-shadow:0 5px 20px #000;
 }
 
-.info{
-line-height:2;
-font-size:15px;
-word-break:break-word;
+@media(max-width:600px){
+  .hero h1{font-size:30px}
+  .logo{font-size:27px}
 }
-
-input{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-font-size:16px;
-outline:none;
-margin-top:10px;
-}
-
-button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
-
-.trackBtn{
-background:#38bdf8;
-color:black;
-}
-
-.shareBtn{
-background:#22c55e;
-color:white;
-}
-
-.videoBtn{
-background:#ef4444;
-color:white;
-}
-
-.status{
-text-align:center;
-margin-top:15px;
-color:#22c55e;
-font-weight:bold;
-font-size:15px;
-}
-
-#map{
-width:100%;
-height:300px;
-border-radius:15px;
-overflow:hidden;
-margin-top:15px;
-}
-
-.mapImage{
-width:100%;
-height:220px;
-object-fit:cover;
-border-radius:15px;
-margin-top:15px;
-border:2px solid #38bdf8;
-}
-
-iframe{
-width:100%;
-height:300px;
-border:none;
-border-radius:15px;
-margin-top:10px;
-}
-
-a{
-color:#38bdf8;
-text-decoration:none;
-}
-
-.footer{
-text-align:center;
-margin-top:20px;
-font-size:12px;
-color:#94a3b8;
-}
-
-@media(max-width:480px){
-
-.logo{
-font-size:20px;
-}
-
-#map{
-height:250px;
-}
-
-iframe{
-height:250px;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<header>
+  <div class="logo">🚘 YOGESH DABI CAR CARE</div>
+  <div class="sub">Premium Car Cleaning & Protection</div>
+</header>
 
-<div class="logo">
+<section class="hero">
+  <h1>Your Car, <span>Our Care</span> ✨</h1>
+  <p>Professional Car Wash • Rubbing • Dry Cleaning • Interior • PPF</p>
+</section>
 
-★彡 𝘿𝙀𝙀𝙋𝘼𝙆 𝘿𝘼𝘽𝙄 彡★
-<br>
-📍 LIVE LOCATION TRACKER
+<section class="services">
 
-</div>
+  <div class="card" onclick="selectService('Car Wash')">
+    <div class="icon">🚿</div>
+    <h3>Car Wash</h3>
+    <p>Premium exterior car wash</p>
+  </div>
 
-<!-- SEARCH -->
+  <div class="card" onclick="selectService('Rubbing & Polishing')">
+    <div class="icon">✨</div>
+    <h3>Rubbing & Polishing</h3>
+    <p>Paint shine & surface polishing</p>
+  </div>
 
-<div class="card">
+  <div class="card" onclick="selectService('Dry Cleaning')">
+    <div class="icon">🧽</div>
+    <h3>Dry Cleaning</h3>
+    <p>Complete vehicle dry cleaning</p>
+  </div>
 
-<div class="title">
-Search Location
-</div>
+  <div class="card" onclick="selectService('Interior Cleaning')">
+    <div class="icon">🪑</div>
+    <h3>Interior Cleaning</h3>
+    <p>Deep cleaning of car interior</p>
+  </div>
 
-<input
-type="text"
-id="searchInput"
-placeholder="Search Any Location...">
+  <div class="card" onclick="selectService('PPF')">
+    <div class="icon">🛡️</div>
+    <h3>PPF</h3>
+    <p>Paint Protection Film</p>
+  </div>
 
-<button
-class="trackBtn"
-onclick="searchLocation()">
+</section>
 
-Search Location
+<section class="booking">
 
+<h2>📲 WhatsApp Booking</h2>
+
+<label>Customer Name</label>
+<input id="name" placeholder="अपना नाम लिखें">
+
+<label>Mobile Number</label>
+<input id="mobile" type="tel" placeholder="मोबाइल नंबर">
+
+<label>Car Model</label>
+<input id="car" placeholder="जैसे Swift / Creta / Scorpio">
+
+<label>Car Number</label>
+<input id="carno" placeholder="जैसे RJ19AB1234">
+
+<label>Select Service</label>
+<select id="service">
+  <option value="">-- Service Select करें --</option>
+  <option>Car Wash</option>
+  <option>Rubbing & Polishing</option>
+  <option>Dry Cleaning</option>
+  <option>Interior Cleaning</option>
+  <option>PPF</option>
+</select>
+
+<label>Preferred Date</label>
+<input id="date" type="date">
+
+<label>Preferred Time</label>
+<input id="time" type="time">
+
+<label>Location / Address</label>
+<textarea id="address" placeholder="Car service location लिखें"></textarea>
+
+<button class="whatsapp" onclick="sendWhatsApp()">
+  💬 WhatsApp पर Booking भेजें
 </button>
 
-</div>
+</section>
 
-<!-- LOCATION INFO -->
+<section class="contact">
+  <h2>Yogesh Dabi</h2>
+  <p>🚘 Professional Car Care Services</p>
+  <p>📱 WhatsApp: 8963858103</p>
+  <p>🚿 Wash | ✨ Rubbing | 🧽 Dry Clean | 🪑 Interior | 🛡️ PPF</p>
+</section>
 
-<div class="card">
+<footer>
+© 2026 Yogesh Dabi Car Care • All Rights Reserved
+</footer>
 
-<div class="title">
-Current Location
-</div>
-
-<div class="info">
-
-<p>
-<strong>Latitude:</strong>
-<span id="lat">--</span>
-</p>
-
-<p>
-<strong>Longitude:</strong>
-<span id="lon">--</span>
-</p>
-
-<p>
-<strong>Status:</strong>
-<span id="accuracy">Waiting...</span>
-</p>
-
-<p>
-
-<strong>Google Maps:</strong>
-
-<a href="#"
-id="mapLink"
-target="_blank">
-
-Open Location
-
-</a>
-
-</p>
-
-</div>
-
-</div>
-
-<!-- BUTTONS -->
-
-<button class="trackBtn"
-onclick="getLocation()">
-
-My Live Location
-
-</button>
-
-<button class="shareBtn"
-onclick="shareLocation()">
-
-Share Location
-
-</button>
-
-<!-- STATUS -->
-
-<div class="status"
-id="status">
-
-Waiting For Permission...
-
-</div>
-
-<!-- MAP -->
-
-<div id="map"></div>
-
-<!-- MAP IMAGE -->
-
-<img
-id="mapImage"
-class="mapImage"
-
-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/1200px-Map_marker.svg.png"
-
-alt="Map Preview">
-
-<!-- STREET VIEW -->
-
-<div class="card">
-
-<div class="title">
-360° Street View
-</div>
-
-<iframe
-id="streetView"
-loading="lazy"
-allowfullscreen>
-</iframe>
-
-</div>
-
-<!-- VIDEO PLAYER -->
-
-<div class="card">
-
-<div class="title">
-YouTube Video Player
-</div>
-
-<iframe
-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-title="YouTube video player"
-allowfullscreen>
-</iframe>
-
-</div>
-
-<div class="footer">
-
-© 2026 Deepak Dabi Live Tracker
-
-</div>
-
-</div>
-
-<script src=
-"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-</script>
+<a class="float" href="https://wa.me/918963858103" target="_blank">💬</a>
 
 <script>
 
-let map = L.map('map')
-.setView([20.5937,78.9629],5);
-
-L.tileLayer(
-'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-{
-attribution:'© OpenStreetMap'
-}
-).addTo(map);
-
-let marker;
-
-let currentLat = "";
-let currentLon = "";
-
-let watchId = null;
-
-let searchMode = false;
-
-function updateMap(lat,lon,title){
-
-document.getElementById("lat")
-.innerHTML = lat;
-
-document.getElementById("lon")
-.innerHTML = lon;
-
-document.getElementById("accuracy")
-.innerHTML = "Updated";
-
-const googleURL =
-
-`https://www.google.com/maps?q=${lat},${lon}`;
-
-document.getElementById("mapLink")
-.href = googleURL;
-
-map.setView([lat,lon],16);
-
-if(marker){
-
-marker.setLatLng([lat,lon]);
-
-}else{
-
-marker = L.marker([lat,lon])
-.addTo(map);
-
+function selectService(serviceName){
+  document.getElementById("service").value=serviceName;
+  document.querySelector(".booking").scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
-marker.bindPopup(title)
-.openPopup();
+function sendWhatsApp(){
 
-document.getElementById("mapImage")
-.src =
+  let name=document.getElementById("name").value.trim();
+  let mobile=document.getElementById("mobile").value.trim();
+  let car=document.getElementById("car").value.trim();
+  let carno=document.getElementById("carno").value.trim();
+  let service=document.getElementById("service").value;
+  let date=document.getElementById("date").value;
+  let time=document.getElementById("time").value;
+  let address=document.getElementById("address").value.trim();
 
-`https://maps.locationiq.com/v3/staticmap?key=pk.demo&center=${lat},${lon}&zoom=16&size=600x300&markers=icon:large-red-cutout|${lat},${lon}`;
+  if(!name || !mobile || !car || !service){
+    alert("कृपया Name, Mobile, Car Model और Service भरें।");
+    return;
+  }
 
-document.getElementById("streetView")
-.src =
+  let message =
+`🚘 *YOGESH DABI CAR CARE*
 
-`https://www.google.com/maps?q=&layer=c&cbll=${lat},${lon}&cbp=11,0,0,0,0&output=svembed`;
+📲 *NEW SERVICE BOOKING*
 
-}
+👤 Customer Name: ${name}
+📞 Mobile: ${mobile}
+🚗 Car Model: ${car}
+🔢 Car Number: ${carno || "Not Provided"}
 
-function getLocation(){
+🛠️ Service: ${service}
 
-searchMode = false;
+📅 Date: ${date || "Flexible"}
+⏰ Time: ${time || "Flexible"}
 
-const status =
-document.getElementById("status");
+📍 Location:
+${address || "Not Provided"}
 
-if(navigator.geolocation){
+━━━━━━━━━━━━━━
+🚿 Car Wash
+✨ Rubbing & Polishing
+🧽 Dry Cleaning
+🪑 Interior Cleaning
+🛡️ PPF
+━━━━━━━━━━━━━━
 
-status.innerHTML =
-"Requesting Permission...";
+Please confirm my booking.`;
 
-if(watchId !== null){
+  let whatsappNumber="918963858103";
 
-navigator.geolocation.clearWatch(watchId);
+  let url=
+    "https://wa.me/"+whatsappNumber+
+    "?text="+encodeURIComponent(message);
 
-}
-
-watchId =
-navigator.geolocation.watchPosition(
-
-showPosition,
-
-showError,
-
-{
-enableHighAccuracy:true,
-timeout:10000,
-maximumAge:0
-}
-
-);
-
-}else{
-
-status.innerHTML =
-"Geolocation Not Supported";
-
-}
-
-}
-
-function showPosition(position){
-
-if(searchMode){
-
-return;
-
-}
-
-currentLat =
-position.coords.latitude;
-
-currentLon =
-position.coords.longitude;
-
-updateMap(
-currentLat,
-currentLon,
-"📍 You Are Here"
-);
-
-document.getElementById("status")
-.innerHTML =
-"✅ Live Tracking Active";
-
-}
-
-function showError(error){
-
-const status =
-document.getElementById("status");
-
-switch(error.code){
-
-case error.PERMISSION_DENIED:
-
-status.innerHTML =
-"❌ Permission Denied";
-
-break;
-
-case error.POSITION_UNAVAILABLE:
-
-status.innerHTML =
-"❌ Location Unavailable";
-
-break;
-
-case error.TIMEOUT:
-
-status.innerHTML =
-"⏳ Request Timeout";
-
-break;
-
-default:
-
-status.innerHTML =
-"❌ Unknown Error";
-
-}
-
-}
-
-function shareLocation(){
-
-if(currentLat === ""){
-
-alert(
-"Please Allow Location First"
-);
-
-return;
-
-}
-
-const shareURL =
-
-`https://www.google.com/maps?q=${currentLat},${currentLon}`;
-
-if(navigator.share){
-
-navigator.share({
-
-title:
-"DEEPAK DABI LIVE LOCATION",
-
-text:
-"Track My Live Location",
-
-url:
-shareURL
-
-});
-
-}else{
-
-navigator.clipboard
-.writeText(shareURL);
-
-alert(
-"Location Link Copied"
-);
-
-}
-
-}
-
-async function searchLocation(){
-
-const query =
-document.getElementById("searchInput")
-.value.trim();
-
-if(query === ""){
-
-alert("Please Enter Location");
-
-return;
-
-}
-
-searchMode = true;
-
-if(watchId !== null){
-
-navigator.geolocation.clearWatch(watchId);
-
-}
-
-document.getElementById("status")
-.innerHTML =
-"Searching Location...";
-
-try{
-
-const response = await fetch(
-
-`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=in&q=${encodeURIComponent(query)}`
-
-);
-
-const data = await response.json();
-
-if(data.length === 0){
-
-alert("Location Not Found");
-
-document.getElementById("status")
-.innerHTML =
-"❌ Location Not Found";
-
-return;
-
-}
-
-const lat =
-parseFloat(data[0].lat);
-
-const lon =
-parseFloat(data[0].lon);
-
-updateMap(
-lat,
-lon,
-data[0].display_name
-);
-
-document.getElementById("status")
-.innerHTML =
-"✅ Search Location Active";
-
-}catch(error){
-
-document.getElementById("status")
-.innerHTML =
-"❌ Search Error";
-
-alert("Search Failed");
-
-}
-
+  window.open(url,"_blank");
 }
 
 </script>
 
 </body>
-
 </html>
