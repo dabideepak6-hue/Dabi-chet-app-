@@ -6,142 +6,201 @@
 <title>Yogesh Dabi Car Care</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
+
 body{
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#050505,#151515,#292929);
-  color:white;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:linear-gradient(135deg,#050505,#151515,#252525);
+ color:#fff;
 }
+
 header{
-  padding:25px 15px;
-  text-align:center;
-  background:linear-gradient(135deg,#111,#000);
-  border-bottom:2px solid #25d366;
+ text-align:center;
+ padding:28px 15px;
+ background:#050505;
+ border-bottom:2px solid #25D366;
 }
+
 .logo{
-  font-size:32px;
-  font-weight:bold;
-  color:#25d366;
+ font-size:30px;
+ font-weight:bold;
+ color:#25D366;
 }
-.sub{color:#ddd;margin-top:7px}
+
+.subtitle{
+ margin-top:8px;
+ color:#ccc;
+}
 
 .hero{
-  padding:45px 20px;
-  text-align:center;
+ text-align:center;
+ padding:40px 20px 25px;
 }
+
 .hero h1{
-  font-size:38px;
-  margin-bottom:12px;
+ font-size:38px;
+ margin:0 0 10px;
 }
-.hero h1 span{color:#25d366}
-.hero p{color:#ccc;font-size:17px}
+
+.hero h1 span{
+ color:#25D366;
+}
+
+.hero p{
+ color:#bbb;
+ font-size:17px;
+}
 
 .services{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+ max-width:1100px;
+ margin:auto;
+ padding:20px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:18px;
 }
+
 .card{
-  background:linear-gradient(145deg,#202020,#101010);
-  padding:25px 18px;
-  border-radius:18px;
-  text-align:center;
-  border:1px solid #333;
-  transition:.3s;
-  cursor:pointer;
+ background:linear-gradient(145deg,#222,#0d0d0d);
+ border:1px solid #333;
+ border-radius:18px;
+ padding:25px 15px;
+ text-align:center;
+ transition:.3s;
 }
+
 .card:hover{
-  transform:translateY(-6px);
-  border-color:#25d366;
-  box-shadow:0 10px 30px #000;
+ transform:translateY(-5px);
+ border-color:#25D366;
 }
-.icon{font-size:45px;margin-bottom:12px}
-.card h3{margin-bottom:8px}
-.card p{color:#aaa}
 
-.booking{
-  max-width:650px;
-  margin:30px auto;
-  padding:25px;
-  background:#111;
-  border-radius:20px;
-  border:1px solid #333;
+.icon{
+ font-size:45px;
 }
-.booking h2{
-  text-align:center;
-  color:#25d366;
-  margin-bottom:20px;
+
+.card h3{
+ margin:12px 0 7px;
 }
+
+.card p{
+ color:#aaa;
+}
+
+.box{
+ max-width:650px;
+ margin:30px auto;
+ padding:25px;
+ background:#111;
+ border:1px solid #333;
+ border-radius:20px;
+}
+
+.box h2{
+ text-align:center;
+ color:#25D366;
+}
+
 label{
-  display:block;
-  margin-top:14px;
-  margin-bottom:6px;
-  color:#ddd;
+ display:block;
+ margin-top:16px;
+ margin-bottom:7px;
+ color:#ddd;
 }
-input,select,textarea{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid #444;
-  background:#222;
-  color:white;
-  font-size:16px;
-}
-textarea{height:90px;resize:none}
 
-.whatsapp{
-  width:100%;
-  margin-top:20px;
-  padding:16px;
-  border:none;
-  border-radius:12px;
-  background:#25d366;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
+input,textarea{
+ width:100%;
+ padding:15px;
+ border-radius:10px;
+ border:1px solid #444;
+ background:#222;
+ color:white;
+ font-size:16px;
+ outline:none;
 }
-.whatsapp:hover{background:#1ebe5d}
+
+input:focus,textarea:focus{
+ border-color:#25D366;
+}
+
+textarea{
+ min-height:90px;
+ resize:none;
+}
+
+button{
+ width:100%;
+ padding:16px;
+ margin-top:18px;
+ border:0;
+ border-radius:12px;
+ font-size:17px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.invite{
+ background:#25D366;
+ color:#fff;
+}
+
+.invite:hover{
+ background:#1ebe5d;
+}
+
+.clear{
+ background:#333;
+ color:#fff;
+}
 
 .contact{
-  text-align:center;
-  padding:30px 15px;
-  background:#080808;
-  margin-top:30px;
+ text-align:center;
+ background:#080808;
+ padding:30px 15px;
+ margin-top:30px;
 }
-.contact h2{color:#25d366}
-.contact p{margin:8px;color:#ccc}
+
+.contact h2{
+ color:#25D366;
+}
 
 footer{
-  text-align:center;
-  padding:20px;
-  color:#888;
-  background:#000;
+ text-align:center;
+ padding:18px;
+ color:#888;
+ background:#000;
 }
 
 .float{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  background:#25d366;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  text-decoration:none;
-  color:white;
-  box-shadow:0 5px 20px #000;
+ position:fixed;
+ right:20px;
+ bottom:20px;
+ width:60px;
+ height:60px;
+ border-radius:50%;
+ background:#25D366;
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:30px;
+ text-decoration:none;
+ box-shadow:0 5px 25px #000;
+}
+
+.note{
+ background:#17251b;
+ border:1px solid #276b3d;
+ color:#bdf5cb;
+ padding:12px;
+ border-radius:10px;
+ margin-top:15px;
+ font-size:14px;
 }
 
 @media(max-width:600px){
-  .hero h1{font-size:30px}
-  .logo{font-size:27px}
+ .hero h1{font-size:30px}
+ .logo{font-size:25px}
 }
 </style>
 </head>
@@ -149,163 +208,477 @@ footer{
 <body>
 
 <header>
-  <div class="logo">🚘 YOGESH DABI CAR CARE</div>
-  <div class="sub">Premium Car Cleaning & Protection</div>
+ <div class="logo">🚘 YOGESH DABI CAR CARE</div>
+ <div class="subtitle">
+  Premium Car Wash & Car Care Services
+ </div>
 </header>
 
 <section class="hero">
-  <h1>Your Car, <span>Our Care</span> ✨</h1>
-  <p>Professional Car Wash • Rubbing • Dry Cleaning • Interior • PPF</p>
+
+ <h1>
+  Your Car,
+  <span>Our Care</span> ✨
+ </h1>
+
+ <p>
+  Car Wash • Rubbing • Dry Cleaning • Interior • PPF
+ </p>
+
 </section>
+
+
+<!-- SERVICES -->
 
 <section class="services">
 
-  <div class="card" onclick="selectService('Car Wash')">
-    <div class="icon">🚿</div>
-    <h3>Car Wash</h3>
-    <p>Premium exterior car wash</p>
-  </div>
+ <div class="card">
+  <div class="icon">🚿</div>
+  <h3>Car Wash</h3>
+  <p>Premium Exterior Cleaning</p>
+ </div>
 
-  <div class="card" onclick="selectService('Rubbing & Polishing')">
-    <div class="icon">✨</div>
-    <h3>Rubbing & Polishing</h3>
-    <p>Paint shine & surface polishing</p>
-  </div>
+ <div class="card">
+  <div class="icon">✨</div>
+  <h3>Rubbing & Polishing</h3>
+  <p>Paint Shine & Polish</p>
+ </div>
 
-  <div class="card" onclick="selectService('Dry Cleaning')">
-    <div class="icon">🧽</div>
-    <h3>Dry Cleaning</h3>
-    <p>Complete vehicle dry cleaning</p>
-  </div>
+ <div class="card">
+  <div class="icon">🧽</div>
+  <h3>Dry Cleaning</h3>
+  <p>Complete Car Cleaning</p>
+ </div>
 
-  <div class="card" onclick="selectService('Interior Cleaning')">
-    <div class="icon">🪑</div>
-    <h3>Interior Cleaning</h3>
-    <p>Deep cleaning of car interior</p>
-  </div>
+ <div class="card">
+  <div class="icon">🪑</div>
+  <h3>Interior Cleaning</h3>
+  <p>Deep Interior Cleaning</p>
+ </div>
 
-  <div class="card" onclick="selectService('PPF')">
-    <div class="icon">🛡️</div>
-    <h3>PPF</h3>
-    <p>Paint Protection Film</p>
-  </div>
+ <div class="card">
+  <div class="icon">🛡️</div>
+  <h3>PPF</h3>
+  <p>Paint Protection Film</p>
+ </div>
 
 </section>
 
-<section class="booking">
 
-<h2>📲 WhatsApp Booking</h2>
+<!-- CUSTOMER INVITE -->
 
-<label>Customer Name</label>
-<input id="name" placeholder="अपना नाम लिखें">
+<section class="box">
 
-<label>Mobile Number</label>
-<input id="mobile" type="tel" placeholder="मोबाइल नंबर">
+ <h2>📲 Customer WhatsApp Invite</h2>
 
-<label>Car Model</label>
-<input id="car" placeholder="जैसे Swift / Creta / Scorpio">
+ <label>Customer Name</label>
 
-<label>Car Number</label>
-<input id="carno" placeholder="जैसे RJ19AB1234">
+ <input
+  id="customerName"
+  type="text"
+  placeholder="जैसे Rahul"
+ >
 
-<label>Select Service</label>
-<select id="service">
-  <option value="">-- Service Select करें --</option>
+
+ <label>Customer Mobile Number</label>
+
+ <input
+  id="customerMobile"
+  type="tel"
+  inputmode="numeric"
+  maxlength="10"
+  placeholder="10 Digit Mobile Number"
+  oninput="cleanNumber(this)"
+ >
+
+
+ <div class="note">
+  💡 Mobile number डालें और नीचे
+  <b>ONE CLICK INVITE</b> दबाएँ।
+ </div>
+
+
+ <button
+  class="invite"
+  onclick="sendInvite()"
+ >
+  💬 ONE CLICK INVITE
+ </button>
+
+
+ <button
+  class="clear"
+  onclick="clearForm()"
+ >
+  🗑️ Clear
+ </button>
+
+</section>
+
+
+<!-- BOOKING -->
+
+<section class="box">
+
+ <h2>🚘 Service Booking</h2>
+
+ <label>Customer Name</label>
+
+ <input
+  id="bookName"
+  type="text"
+  placeholder="Customer Name"
+ >
+
+
+ <label>Customer Mobile</label>
+
+ <input
+  id="bookMobile"
+  type="tel"
+  maxlength="10"
+  inputmode="numeric"
+  placeholder="10 Digit Mobile Number"
+  oninput="cleanNumber(this)"
+ >
+
+
+ <label>Car Model</label>
+
+ <input
+  id="carModel"
+  type="text"
+  placeholder="Swift / Creta / Scorpio"
+ >
+
+
+ <label>Car Number</label>
+
+ <input
+  id="carNumber"
+  type="text"
+  placeholder="RJ19AB1234"
+ >
+
+
+ <label>Service</label>
+
+ <select id="service"
+ style="
+ width:100%;
+ padding:15px;
+ border-radius:10px;
+ background:#222;
+ color:#fff;
+ border:1px solid #444;
+ font-size:16px;
+ ">
+
+  <option value="">Select Service</option>
+
   <option>Car Wash</option>
+
   <option>Rubbing & Polishing</option>
+
   <option>Dry Cleaning</option>
+
   <option>Interior Cleaning</option>
+
   <option>PPF</option>
-</select>
 
-<label>Preferred Date</label>
-<input id="date" type="date">
+ </select>
 
-<label>Preferred Time</label>
-<input id="time" type="time">
 
-<label>Location / Address</label>
-<textarea id="address" placeholder="Car service location लिखें"></textarea>
+ <label>Preferred Date</label>
 
-<button class="whatsapp" onclick="sendWhatsApp()">
-  💬 WhatsApp पर Booking भेजें
-</button>
+ <input
+  id="bookDate"
+  type="date"
+ >
+
+
+ <label>Preferred Time</label>
+
+ <input
+  id="bookTime"
+  type="time"
+ >
+
+
+ <label>Location</label>
+
+ <textarea
+  id="bookAddress"
+  placeholder="Customer location / address"
+ ></textarea>
+
+
+ <button
+  class="invite"
+  onclick="sendBooking()"
+ >
+  📲 WhatsApp Booking
+ </button>
 
 </section>
+
 
 <section class="contact">
-  <h2>Yogesh Dabi</h2>
-  <p>🚘 Professional Car Care Services</p>
-  <p>📱 WhatsApp: 8963858103</p>
-  <p>🚿 Wash | ✨ Rubbing | 🧽 Dry Clean | 🪑 Interior | 🛡️ PPF</p>
+
+ <h2>Yogesh Dabi</h2>
+
+ <p>🚘 Professional Car Care Services</p>
+
+ <p>📲 WhatsApp: 8963858103</p>
+
+ <p>
+  🚿 Wash |
+  ✨ Rubbing |
+  🧽 Dry Clean |
+  🪑 Interior |
+  🛡️ PPF
+ </p>
+
 </section>
 
+
 <footer>
-© 2026 Yogesh Dabi Car Care • All Rights Reserved
+
+ © 2026 Yogesh Dabi Car Care
+
 </footer>
 
-<a class="float" href="https://wa.me/918963858103" target="_blank">💬</a>
+
+<a
+ class="float"
+ href="https://wa.me/918963858103"
+ target="_blank"
+>
+ 💬
+</a>
+
 
 <script>
 
-function selectService(serviceName){
-  document.getElementById("service").value=serviceName;
-  document.querySelector(".booking").scrollIntoView({
-    behavior:"smooth"
-  });
+/* =========================
+   WHATSAPP NUMBER
+========================= */
+
+const OWNER_WHATSAPP = "918963858103";
+
+
+/* =========================
+   CLEAN MOBILE NUMBER
+========================= */
+
+function cleanNumber(input){
+
+ input.value = input.value.replace(/\D/g,"").slice(0,10);
+
 }
 
-function sendWhatsApp(){
 
-  let name=document.getElementById("name").value.trim();
-  let mobile=document.getElementById("mobile").value.trim();
-  let car=document.getElementById("car").value.trim();
-  let carno=document.getElementById("carno").value.trim();
-  let service=document.getElementById("service").value;
-  let date=document.getElementById("date").value;
-  let time=document.getElementById("time").value;
-  let address=document.getElementById("address").value.trim();
+/* =========================
+   CUSTOMER INVITE
+========================= */
 
-  if(!name || !mobile || !car || !service){
-    alert("कृपया Name, Mobile, Car Model और Service भरें।");
-    return;
-  }
+function sendInvite(){
 
-  let message =
-`🚘 *YOGESH DABI CAR CARE*
+ let name =
+ document.getElementById("customerName").value.trim();
+
+ let mobile =
+ document.getElementById("customerMobile").value
+ .replace(/\D/g,"");
+
+
+ /* VALIDATION */
+
+ if(name === ""){
+
+  alert("कृपया Customer Name डालें।");
+
+  document.getElementById("customerName").focus();
+
+  return;
+ }
+
+
+ if(mobile.length !== 10){
+
+  alert("कृपया सही 10 Digit Mobile Number डालें।");
+
+  document.getElementById("customerMobile").focus();
+
+  return;
+ }
+
+
+ /*
+  Customer number
+  पर WhatsApp खोलना
+ */
+
+ let customerWhatsApp = "91" + mobile;
+
+
+ let message =
+
+ `🚘✨ *YOGESH DABI CAR CARE* ✨🚘
+
+नमस्कार *${name}* जी 🙏
+
+आपकी कार की Professional Care के लिए
+हमारे यहाँ उपलब्ध हैं:
+
+🚿 *Car Wash*
+✨ *Rubbing & Polishing*
+🧽 *Dry Cleaning*
+🪑 *Interior Deep Cleaning*
+🛡️ *PPF – Paint Protection Film*
+
+✨ अपनी कार को नया जैसा Shine
+और Protection देने के लिए आज ही
+हमसे संपर्क करें।
+
+📲 *Booking / Enquiry*
+Yogesh Dabi
+8963858103
+
+🙏 धन्यवाद
+
+🚘 *YOGESH DABI CAR CARE*`;
+
+
+ let url =
+ "https://wa.me/" +
+ customerWhatsApp +
+ "?text=" +
+ encodeURIComponent(message);
+
+
+ /*
+  WhatsApp customer chat
+ */
+
+ window.open(url,"_blank");
+
+}
+
+
+/* =========================
+   SERVICE BOOKING
+========================= */
+
+function sendBooking(){
+
+ let name =
+ document.getElementById("bookName").value.trim();
+
+ let mobile =
+ document.getElementById("bookMobile").value
+ .replace(/\D/g,"");
+
+ let car =
+ document.getElementById("carModel").value.trim();
+
+ let carNumber =
+ document.getElementById("carNumber").value.trim();
+
+ let service =
+ document.getElementById("service").value;
+
+ let date =
+ document.getElementById("bookDate").value;
+
+ let time =
+ document.getElementById("bookTime").value;
+
+ let address =
+ document.getElementById("bookAddress").value.trim();
+
+
+ if(name === "" ||
+    mobile.length !== 10 ||
+    car === "" ||
+    service === ""){
+
+  alert(
+   "Name, सही Mobile, Car Model और Service भरना जरूरी है।"
+  );
+
+  return;
+
+ }
+
+
+ let message =
+
+ `🚘 *YOGESH DABI CAR CARE*
 
 📲 *NEW SERVICE BOOKING*
 
-👤 Customer Name: ${name}
-📞 Mobile: ${mobile}
-🚗 Car Model: ${car}
-🔢 Car Number: ${carno || "Not Provided"}
+👤 Customer:
+${name}
 
-🛠️ Service: ${service}
+📞 Mobile:
+${mobile}
 
-📅 Date: ${date || "Flexible"}
-⏰ Time: ${time || "Flexible"}
+🚗 Car:
+${car}
+
+🔢 Car Number:
+${carNumber || "Not Provided"}
+
+🛠️ Service:
+${service}
+
+📅 Date:
+${date || "Flexible"}
+
+⏰ Time:
+${time || "Flexible"}
 
 📍 Location:
 ${address || "Not Provided"}
 
 ━━━━━━━━━━━━━━
+
 🚿 Car Wash
 ✨ Rubbing & Polishing
 🧽 Dry Cleaning
 🪑 Interior Cleaning
 🛡️ PPF
+
 ━━━━━━━━━━━━━━
 
-Please confirm my booking.`;
+Please confirm my booking.
 
-  let whatsappNumber="918963858103";
+*Yogesh Dabi*
+📲 8963858103`;
 
-  let url=
-    "https://wa.me/"+whatsappNumber+
-    "?text="+encodeURIComponent(message);
 
-  window.open(url,"_blank");
+ let url =
+ "https://wa.me/" +
+ OWNER_WHATSAPP +
+ "?text=" +
+ encodeURIComponent(message);
+
+
+ window.open(url,"_blank");
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearForm(){
+
+ document.getElementById("customerName").value="";
+ document.getElementById("customerMobile").value="";
+
 }
 
 </script>
